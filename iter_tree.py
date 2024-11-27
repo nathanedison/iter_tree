@@ -1,4 +1,4 @@
-def iterate_tree(target, parent_keys: = []):
+def iterate_tree(target, parent_keys = []):
     if type(target) == dict:
         tree_indexes = target.keys()
     elif type(target) in (list,tuple,range):
