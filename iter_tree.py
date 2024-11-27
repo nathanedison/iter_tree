@@ -4,9 +4,12 @@
 # The index_filters parameter is an optional dictionary for filtering the indexes in one or more dimensions.
 # The keys of the dictionary specify the dimension number (starting at 1).
 # The value contains the boolean callable to filter that dimension.
+# Filtering occurs on a dimension's indexes/keys, not its values.
+
 # The optional dim_limit parameter sets the deepest dimension to iterate (counting from 1).
 # The parent_keys parameter should not be used; its only purpose is to facilitate recursion of the function.
-def iterate_tree(target, index_filters: dict = {}, dim_limit: int = 0, parent_keys: list = []):
+
+def iter_tree(target, index_filters: dict = {}, dim_limit: int = 0, parent_keys: list = []):
     if type(target) == dict:
         branch_indexes = target.keys()
     elif type(target) in (list,tuple,range):
@@ -22,4 +25,4 @@ def iterate_tree(target, index_filters: dict = {}, dim_limit: int = 0, parent_ke
             if callable(branch_filter):
                 branch_indexes = filter(branch_filter,branch_indexes)
         for branch in branch_indexes:
-            yield from iterate_tree(target[branch], index_filters, dim_limit, parent_keys + [branch])
+            yield from iter_tree(target[branch], index_filters, dim_limit, parent_keys + [branch])
