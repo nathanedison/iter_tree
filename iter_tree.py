@@ -4,8 +4,8 @@
 # The index_filters parameter is an optional dictionary for filtering the indexes in one or more dimensions.
 # The keys of the dictionary specify the dimension number (starting at 1).
 # The value contains the boolean callable to filter that dimension.
-# The optional dim_limit parameter sets the deepest dimension to iterate.
-# The parent_keys parameter should not be used; its only purpose is to facilitate the recursion.
+# The optional dim_limit parameter sets the deepest dimension to iterate (counting from 1).
+# The parent_keys parameter should not be used; its only purpose is to facilitate recursion of the function.
 def iterate_tree(target, index_filters: dict = {}, dim_limit: int = 0, parent_keys: list = []):
     if type(target) == dict:
         branch_indexes = target.keys()
